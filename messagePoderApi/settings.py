@@ -131,8 +131,8 @@ STATIC_ROOT = 'staticfiles'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = True
 
-CLIENT_URL = 'http://localhost:3000'
-HOST_URL = 'http://localhost:8000'
+CLIENT_URL = 'https://whatsapp-pool.netlify.app/home'
+HOST_URL = 'https://whatsapp-message-pool.herokuapp.com'
 # EMAIL CONFIG
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
