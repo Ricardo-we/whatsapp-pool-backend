@@ -57,7 +57,7 @@ def sign_up(request):
         email = request.data['email']
         username= request.data['username']
         password = request.data['password']
-        phone_number = validate_phone_number(request.data.get('password').strip())
+        phone_number = validate_phone_number(request.data.get('phone_number').strip())
         user = User.create_user(username, password, email, phone_number)
         serializer = UserSerializer(user, many=False)
         if not user: raise Exception('Error creating user')
