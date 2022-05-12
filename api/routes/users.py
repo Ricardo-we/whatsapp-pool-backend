@@ -109,7 +109,7 @@ def delete_account(request):
     try:
         user_id = request.GET.get('user_id')
         auth_token = request.GET.get('auth_token')
-        if not User.check_user_token(user_id, auth_token, request): 
+        if not User.check_user_token(user_id, auth_token): 
             return HttpResponse('<h1>Invalid credentials</h1>',status=400)
         user = User.objects.get(id=user_id)
         user.delete()

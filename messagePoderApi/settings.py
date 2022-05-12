@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-v3$ke*++af3qi5r##ca8zzncaqq0pg6qb_-2f*nwhj0dkcqkr-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['whatsapp-message-pool.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','whatsapp-message-pool.herokuapp.com']
 
 
 # Application definition
