@@ -6,7 +6,6 @@ from rest_framework.decorators import api_view, parser_classes
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from api.views import SUCCESS_MESSAGE, ERROR_MESSAGE
-from pywhatkit import whats
 
 @csrf_exempt
 @api_view(['POST'])
