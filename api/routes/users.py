@@ -115,8 +115,7 @@ def delete_account(request):
         user.delete()
         return redirect(f'{settings.CLIENT_URL}/logout')
     except Exception as err:
-        print(err) 
-        return HttpResponse('<h2>Something went wrong</h2>', status=500)
+        return HttpResponse(str(err), status=500)
 
 
 # EXTRA: RELATIONSHIP URLS
