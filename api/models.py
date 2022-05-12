@@ -41,7 +41,7 @@ class User(models.Model):
         user__id = user_id
         if request:
             token_ = request.headers.get('Authorization') 
-        if request.method == 'DELETE' or not user_id: 
+        if not user_id and request: 
             user__id = request.GET.get('user_id')
         return User.objects.filter(id=user__id, auth_token=token_).exists()
 
