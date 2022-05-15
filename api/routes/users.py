@@ -61,8 +61,9 @@ def sign_up(request):
         user = User.create_user(username, password, email, phone_number)
         serializer = UserSerializer(user, many=False)
         if not user: raise Exception('Error creating user')
-
-        mail_template(user)
+        try:
+            mail_template(user)
+        except: pass
         return Response(serializer.data)
     except Exception as error:
         return JsonResponse(ERROR_MESSAGE(error), safe=False)
