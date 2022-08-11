@@ -1,4 +1,4 @@
-from BaseMessage import BaseMessage
+from .BaseMessage import BaseMessage
 from django.core.mail import send_mail
 
 

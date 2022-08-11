@@ -38,6 +38,7 @@ def cron_scheduler(func, id, cron_expression):
 def delete_job_if_exists(job_id):
     if scheduler.get_job(job_id):
         scheduler.remove_job(job_id)
+        print("deleted")
         return True
     return False
 

@@ -9,21 +9,12 @@ from rest_framework.parsers import JSONParser
 from ..views import SUCCESS_MESSAGE, ERROR_MESSAGE
 from utils.models_utils import ModelUtils
 from utils.scheduler import validate_cron_exp, scheduler, cron_scheduler, delete_job_if_exists
-from django.core.mail import send_mail
-from django.conf import settings
+from services.message_types.MessageContext import execute_method
 
 
-def mail_template(user, message):
+def mail_template(message):
     def execute_():
-        send_mail(
-            'Whatssapp pool',
-            f'''
-                {message}
-                Programmed for now! {user.username}
-            ''',
-            settings.EMAIL_HOST_USER,
-            [user.email]
-        )
+        execute_method(message, type=message.message_type)
     return execute_
 
 
@@ -43,7 +34,7 @@ def create_message(request):
 
         if request.data.get("message_interval"):
             schedule_id = get_scheduled_message_id(message.id)
-            cron_scheduler(mail_template(user), schedule_id, request.data["message_interval"])
+            cron_scheduler(mail_template(message), schedule_id, request.data["message_interval"])
 
         serializer = MessagesSerializer(message, many=False)
         return Response(serializer.data)
@@ -68,7 +59,7 @@ def update_message(request, message):
 
     if request.data.get("message_interval"):
         validate_cron_exp(request.data.get("message_interval"))
-        cron_scheduler(mail_template(message.user), schedule_id, request.data["message_interval"])
+        cron_scheduler(mail_template(message), schedule_id, request.data["message_interval"])
 
     serializer = MessagesSerializer(message, many=False)
     return Response(serializer.data)
